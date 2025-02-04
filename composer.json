@@ -1,0 +1,23 @@
+{
+    "name": "employer/vacation-days",
+    "description": "Determine the number of vacation days for each of its employees for a given year.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Tarique Iqbal",
+            "email": "live.iqbal@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "VacationDays\\": "src/VacationDays/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
