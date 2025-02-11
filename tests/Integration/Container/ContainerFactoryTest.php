@@ -7,6 +7,7 @@ namespace Tests\Integration\Container;
 use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use VacationDays\Container\ContainerFactory;
+use VacationDays\Handler\ExceptionHandler;
 use VacationDays\Repository\EmployeeRepository;
 use VacationDays\Service\CliArgsService;
 use VacationDays\Service\ConfigService;
@@ -35,5 +36,6 @@ class ContainerFactoryTest extends TestCase
         $this->assertInstanceOf(EmployeeVacationDaysService::class, $container['EmployeeVacationDaysService']);
         $this->assertInstanceOf(TemplateService::class, $container['TemplateService']);
         $this->assertInstanceOf(VacationDaysApplication::class, $container['VacationDaysApplication']);
+        $this->assertInstanceOf(ExceptionHandler::class, $container['ExceptionHandler']);
     }
 }

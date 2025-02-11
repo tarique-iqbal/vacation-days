@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace VacationDays\Container;
 
 use Pimple\Container;
+use VacationDays\Handler\ExceptionHandler;
 use VacationDays\Repository\EmployeeRepository;
 use VacationDays\Service\CliArgsService;
 use VacationDays\Service\ConfigService;
@@ -72,6 +73,12 @@ class ContainerFactory
                 $c['CliArgsService'],
                 $c['EmployeeVacationDaysService'],
                 $c['TemplateService'],
+            );
+        };
+
+        $container['ExceptionHandler'] = function (Container $c) {
+            return new ExceptionHandler(
+                $c['ConfigService'],
             );
         };
 
