@@ -8,6 +8,7 @@ use Pimple\Container;
 use VacationDays\Repository\EmployeeRepository;
 use VacationDays\Service\CliArgsService;
 use VacationDays\Service\ConfigService;
+use VacationDays\Service\EmployeeVacationDaysService;
 use VacationDays\Service\TemplateService;
 use VacationDays\Service\VacationCalculation\FollowingYearService;
 use VacationDays\Service\VacationCalculation\JoiningYearService;
@@ -50,6 +51,15 @@ class ContainerFactory
 
         $container['NonApplicableService'] = function () {
             return new NonApplicableService();
+        };
+
+        $container['EmployeeVacationDaysService'] = function (Container $c) {
+            return new EmployeeVacationDaysService(
+                $c['EmployeeRepository'],
+                $c['JoiningYearService'],
+                $c['FollowingYearService'],
+                $c['NonApplicableService'],
+            );
         };
 
         $container['TemplateService'] = function () {

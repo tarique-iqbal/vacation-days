@@ -10,6 +10,7 @@ use VacationDays\Container\ContainerFactory;
 use VacationDays\Repository\EmployeeRepository;
 use VacationDays\Service\CliArgsService;
 use VacationDays\Service\ConfigService;
+use VacationDays\Service\EmployeeVacationDaysService;
 use VacationDays\Service\TemplateService;
 use VacationDays\Service\VacationCalculation\FollowingYearService;
 use VacationDays\Service\VacationCalculation\JoiningYearService;
@@ -30,6 +31,7 @@ class ContainerFactoryTest extends TestCase
         $this->assertInstanceOf(JoiningYearService::class, $container['JoiningYearService']);
         $this->assertInstanceOf(FollowingYearService::class, $container['FollowingYearService']);
         $this->assertInstanceOf(NonApplicableService::class, $container['NonApplicableService']);
+        $this->assertInstanceOf(EmployeeVacationDaysService::class, $container['EmployeeVacationDaysService']);
         $this->assertInstanceOf(TemplateService::class, $container['TemplateService']);
     }
 }
