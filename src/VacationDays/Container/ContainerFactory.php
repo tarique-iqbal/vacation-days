@@ -13,6 +13,7 @@ use VacationDays\Service\TemplateService;
 use VacationDays\Service\VacationCalculation\FollowingYearService;
 use VacationDays\Service\VacationCalculation\JoiningYearService;
 use VacationDays\Service\VacationCalculation\NonApplicableService;
+use VacationDays\VacationDaysApplication;
 
 class ContainerFactory
 {
@@ -64,6 +65,14 @@ class ContainerFactory
 
         $container['TemplateService'] = function () {
             return new TemplateService();
+        };
+
+        $container['VacationDaysApplication'] = function (Container $c) {
+            return new VacationDaysApplication(
+                $c['CliArgsService'],
+                $c['EmployeeVacationDaysService'],
+                $c['TemplateService'],
+            );
         };
 
         return $container;
