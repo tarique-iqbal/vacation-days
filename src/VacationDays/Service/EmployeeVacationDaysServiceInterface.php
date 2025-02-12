@@ -9,5 +9,5 @@ interface EmployeeVacationDaysServiceInterface
     /**
      * @return Employee[]
      */
-    public function calculate(int $year): array;
+    public function calculate(int $givenYear): array;
 }

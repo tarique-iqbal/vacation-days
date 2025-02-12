@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace VacationDays\Service;
 
-final class ConfigService implements ConfigServiceInterface
+final readonly class ConfigService implements ConfigServiceInterface
 {
-    private array $config;
-
-    public function __construct(array $config)
+    public function __construct(private array $config)
     {
-        $this->config = $config;
     }
 
     public function getEmployeeDataSourceFile(): string

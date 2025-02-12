@@ -11,22 +11,13 @@ use VacationDays\Service\EmployeeVacationDaysServiceInterface;
 use VacationDays\Service\TemplateServiceInterface;
 use VacationDays\Validator\Validator;
 
-final class VacationDaysApplication
+final readonly class VacationDaysApplication
 {
-    private CliArgsServiceInterface $cliArgsService;
-
-    private EmployeeVacationDaysServiceInterface $employeeVacationDaysService;
-
-    private TemplateServiceInterface $templateService;
-
     public function __construct(
-        CliArgsServiceInterface $cliArgsService,
-        EmployeeVacationDaysServiceInterface $employeeVacationDaysService,
-        TemplateServiceInterface $templateService
+        private CliArgsServiceInterface $cliArgsService,
+        private EmployeeVacationDaysServiceInterface $employeeVacationDaysService,
+        private TemplateServiceInterface $templateService
     ) {
-        $this->cliArgsService = $cliArgsService;
-        $this->employeeVacationDaysService = $employeeVacationDaysService;
-        $this->templateService = $templateService;
     }
 
     /**
@@ -35,11 +26,11 @@ final class VacationDaysApplication
      */
     public function calculate(): void
     {
-        $year = $this->cliArgsService->getArgs();
+        $givenYear = $this->cliArgsService->getArgs();
 
-        Validator::validate($year);
+        Validator::validate($givenYear);
 
-        $employees = $this->employeeVacationDaysService->calculate((int) $year[0]);
+        $employees = $this->employeeVacationDaysService->calculate((int) $givenYear[0]);
 
         $this->templateService->render(
             BASE_DIR . '/src/VacationDays/Template/vacation_days',

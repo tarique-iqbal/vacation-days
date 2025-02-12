@@ -16,13 +16,10 @@ use VacationDays\Service\VacationCalculation\JoiningYearService;
 use VacationDays\Service\VacationCalculation\NonApplicableService;
 use VacationDays\VacationDaysApplication;
 
-class ContainerFactory
+final readonly class ContainerFactory
 {
-    private array $config;
-
-    public function __construct(array $config)
+    public function __construct(private array $config)
     {
-        $this->config = $config;
     }
 
     public function create(): Container

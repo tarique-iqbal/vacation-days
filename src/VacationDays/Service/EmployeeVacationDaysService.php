@@ -8,36 +8,24 @@ use VacationDays\Entity\Employee;
 use VacationDays\Repository\EmployeeRepositoryInterface;
 use VacationDays\Service\VacationCalculation\CalculationServiceInterface;
 
-final class EmployeeVacationDaysService implements EmployeeVacationDaysServiceInterface
+final readonly class EmployeeVacationDaysService implements EmployeeVacationDaysServiceInterface
 {
     private const ORDINARY_VACATION_DAYS = 26;
 
     private const SPECIAL_VACATION_DAYS = 27;
 
-    private EmployeeRepositoryInterface $employeeRepository;
-
-    private CalculationServiceInterface $joiningYearService;
-
-    private CalculationServiceInterface $followingYearService;
-
-    private CalculationServiceInterface $nonApplicableService;
-
     public function __construct(
-        EmployeeRepositoryInterface $employeeRepository,
-        CalculationServiceInterface $joiningYearService,
-        CalculationServiceInterface $followingYearService,
-        CalculationServiceInterface $nonApplicableService,
+        private EmployeeRepositoryInterface $employeeRepository,
+        private CalculationServiceInterface $joiningYearService,
+        private CalculationServiceInterface $followingYearService,
+        private CalculationServiceInterface $nonApplicableService,
     ) {
-        $this->employeeRepository = $employeeRepository;
-        $this->joiningYearService = $joiningYearService;
-        $this->followingYearService = $followingYearService;
-        $this->nonApplicableService = $nonApplicableService;
     }
 
     /**
      * @return Employee[]
      */
-    public function calculate(int $year): array
+    public function calculate(int $givenYear): array
     {
         $employees = $this->employeeRepository->findAll();
 
@@ -50,13 +38,13 @@ final class EmployeeVacationDaysService implements EmployeeVacationDaysServiceIn
                 self::SPECIAL_VACATION_DAYS :
                 self::ORDINARY_VACATION_DAYS;
 
-            $yearlyVacationDays = $this->joiningYearService->calculate(
+            $givenYearVacationDays = $this->joiningYearService->calculate(
                 $employee,
-                $year,
+                $givenYear,
                 $yearlyVacationDays
             );
 
-            $employee->setVacationDaysOfGivenYear($yearlyVacationDays);
+            $employee->setVacationDaysOfGivenYear($givenYearVacationDays);
         }
 
         return $employees;
