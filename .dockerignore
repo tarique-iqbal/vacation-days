@@ -1,0 +1,9 @@
+.DS_Store/
+.idea/
+.git/
+vendor/
+.phpunit.cache/
+Dockerfile
+.gitignore
+.php-cs-fixer.cache
+.phpunit.result.cache
