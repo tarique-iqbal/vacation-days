@@ -14,6 +14,7 @@ employment
 ```
 composer
 php (>=8.2)
+Docker (Optional for Containerized Development)
 ```
 
 ## Note
@@ -22,53 +23,56 @@ The application will not work if [register_argc_argv](http://php.net/manual/en/i
 ## Installation and Run the script
 - All the `code` required to get started
 - Need write permission to following `directory`
-
 `./var/logs`
-
 - Install the script
 ```shell
 $ cd /path/to/base/directory
 $ composer install --no-dev
 ```
-
 - Run the script and sample output
-
 ```shell
-$ php index.php 2022
+$ php index.php 2025
 Hans Müller: 26
 Angelika Fringe: 26
 Peter Klever: 27
-Marina Helter: 27
+Marina Helter: 26
 Sepp Meier: 26
 ```
-
 ```shell
-$ php index.php 2020
+$ php index.php 2021
 Hans Müller: 27
 Angelika Fringe: 27
 Peter Klever: 28
 Marina Helter: 26
 Sepp Meier: 26
 ```
-
 ```shell
 $ php index.php 2017
 Hans Müller: 26
 Angelika Fringe: 26
 Peter Klever: 27
-Marina Helter: Inapplicable
+Marina Helter: Not applicable
 Sepp Meier: 2.16
 ```
 
 ## Running the tests
-
 - Follow Install instructions.
 Adapt `phpunit.xml.dist` PHP Constant according to your setup environment.
-
 ```shell
 $ cd /path/to/base/directory
 $ composer update
 $ ./vendor/bin/phpunit tests
 ```
-
 Test-cases, test unit and integration tests.
+
+## Run the script in a Docker container
+- Build the Docker Image
+```shell
+$ docker build --no-cache -t vacation_days .
+```
+- Run the Container and script
+```shell
+$ docker run -it --rm vacation_days
+$ php index.php <year>
+$ ./vendor/bin/phpunit tests
+```
