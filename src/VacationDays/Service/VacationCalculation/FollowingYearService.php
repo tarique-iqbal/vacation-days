@@ -22,8 +22,8 @@ final class FollowingYearService extends AbstractCalculationService
             $calculatedVacationDays = $yearlyVacationDays;
 
             if (
-                $this->isEmployeeAtLeastSpecificYearsOld($employee->getDateOfBirth()) &&
-                $this->isEmploymentEachFifthYear($employee->getContractStartDate(), $givenYear)
+                $this->doesAgeCriteriaQualify($employee->getDateOfBirth(), $givenYear) &&
+                $this->isEmploymentOnFifthYear($joiningYear, $givenYear)
             ) {
                 $calculatedVacationDays += self::ADDITIONAL_VACATION_DAYS;
             }
@@ -34,11 +34,10 @@ final class FollowingYearService extends AbstractCalculationService
         }
     }
 
-    private function isEmployeeAtLeastSpecificYearsOld(DateTimeInterface $dateOfBirth): bool
+    private function doesAgeCriteriaQualify(DateTimeInterface $dateOfBirth, int $givenYear): bool
     {
-        $firstDayOfNextYear = new DateTime('1st January Next Year');
-
-        $difference = $dateOfBirth->diff($firstDayOfNextYear);
+        $lastDayOfGivenYear = DateTime::createFromFormat('d.m.Y', "31.12.$givenYear");
+        $difference = $dateOfBirth->diff($lastDayOfGivenYear);
 
         if (self::THIRTY_YEARS_OLD <= $difference->y) {
             return true;
@@ -47,18 +46,10 @@ final class FollowingYearService extends AbstractCalculationService
         return false;
     }
 
-    private function isEmploymentEachFifthYear(DateTimeInterface $contractStartDate, int $givenYear): bool
+    private function isEmploymentOnFifthYear(int $joiningYear, int $givenYear): bool
     {
-        $nextYear = $givenYear + 1;
-        $firstDayOfNextYear = DateTime::createFromFormat('d.m.Y', "01.01.$nextYear");
-        $difference = $contractStartDate->diff($firstDayOfNextYear);
+        $employmentYears = $givenYear - $joiningYear;
 
-        if ($difference->y % 5 === 0 && $difference->m === 0 && $difference->d === 0) {
-            return true;
-        } elseif ($difference->y % 5 === 4 && ($difference->m >= 1 || $difference->d === 17)) {
-            return true;
-        }
-
-        return false;
+        return $employmentYears % 5 === 0;
     }
 }

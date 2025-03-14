@@ -40,7 +40,7 @@ class VacationDaysApplicationTest extends TestCase
                 'Sepp Meier: 2.16' . PHP_EOL
             ],
             [
-                ['2020'],
+                ['2021'],
                 'Hans Müller: 27' . PHP_EOL .
                 'Angelika Fringe: 27' . PHP_EOL .
                 'Peter Klever: 28' . PHP_EOL .
@@ -48,7 +48,7 @@ class VacationDaysApplicationTest extends TestCase
                 'Sepp Meier: 26' . PHP_EOL
             ],
             [
-                ['2022'],
+                ['2023'],
                 'Hans Müller: 26' . PHP_EOL .
                 'Angelika Fringe: 26' . PHP_EOL .
                 'Peter Klever: 27' . PHP_EOL .

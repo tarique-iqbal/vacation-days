@@ -21,7 +21,7 @@ class FollowingYearServiceTest extends TestCase
                     "dateOfBirth" => "30.12.1981",
                     "contractStartDate" => "01.01.2011",
                     "isSpecialContract" => "no"
-                ], 2020, 26, 27
+                ], 2021, 26, 27
             ],
             [
                 [
@@ -29,7 +29,7 @@ class FollowingYearServiceTest extends TestCase
                     "dateOfBirth" => "17.06.1977",
                     "contractStartDate" => "01.07.2016",
                     "isSpecialContract" => "yes"
-                ], 2020, 27, 28
+                ], 2021, 27, 28
             ],
             [
                 [
@@ -37,7 +37,7 @@ class FollowingYearServiceTest extends TestCase
                     "dateOfBirth" => "30.12.1973",
                     "contractStartDate" => "01.12.2011",
                     "isSpecialContract" => "no"
-                ], 2020, 26, 27
+                ], 2021, 26, 27
             ],
             [
                 [
@@ -45,7 +45,7 @@ class FollowingYearServiceTest extends TestCase
                     "dateOfBirth" => "30.11.1975",
                     "contractStartDate" => "15.12.2016",
                     "isSpecialContract" => "no"
-                ], 2020, 26, 27
+                ], 2021, 26, 27
             ],
             [
                 [
